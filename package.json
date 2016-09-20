@@ -1,4 +1,15 @@
 {
+  "name": "code-runners",
+  "version": "0.0.1",
+  "description": "Competitive coding app",
+  "main": "public/index.php",
+  "keywords": [
+    "coding",
+    "gaming",
+    "competitive"
+  ],
+  "author": "Jimut Dhali",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "prod": "gulp --production",
@@ -14,6 +25,7 @@
     "vue-resource": "^1.0.2"
   },
   "dependencies": {
+    "angular": "^1.5.8",
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.1.0"
   }
