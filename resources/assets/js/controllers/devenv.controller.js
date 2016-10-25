@@ -1,9 +1,10 @@
-function controller ($scope, $timeout) {
+function controller ($scope, $timeout, $http) {
     var code;
     var qs;
     var term;
     var testCaseEditors = [];
 
+    // Register all the editors
     $timeout(function () {
         code = ace.edit('code');
         code.setTheme("ace/theme/monokai");
@@ -36,6 +37,7 @@ function controller ($scope, $timeout) {
         }
     }, 0, false);
 
+    // Call resize when resized
     $scope.$on('resized', function (event) {
         $timeout(function () {
             code.resize();
@@ -43,8 +45,35 @@ function controller ($scope, $timeout) {
             term.resize();
         }, 0, false);
     });
+
+    // Send the code and test cases
+    $scope.run = function () {
+        let writtenCode = code.getValue();
+        let testCases = [];
+
+        for (let i = 0; i < testCaseEditors.length; i++) {
+            let input = testCaseEditors[i].input.getValue();
+            let output = testCaseEditors[i].output.getValue();
+
+            if (input === "" && output === "") continue;
+
+            testCases.push({
+                input: input,
+                output: output
+            });
+        }
+
+        $http.post('/compile', {
+            code: writtenCode,
+            testCases: testCases
+        }).then(function (resp) {
+            term.setValue(resp.data.termOut);
+        }, function () {
+            console.log('Compile Failed');
+        });
+    };
 }
 
-controller.$inject = ['$scope', '$timeout'];
+controller.$inject = ['$scope', '$timeout', '$http'];
 
 module.exports = controller;

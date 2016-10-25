@@ -36,7 +36,8 @@
                         <li><a href="#question" data-toggle="tab">Question</a></li>
                     </ul>
                     <div class="de-control">
-                        <button class="btn btn--de btn-primary">
+                        <button class="btn btn--de btn-primary"
+                                ng-click="run()">
                             <span class="glyphicon glyphicon-play"></span>
                         </button>
                     </div>
