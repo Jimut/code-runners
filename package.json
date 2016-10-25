@@ -25,6 +25,7 @@
     "vue-resource": "^1.0.2"
   },
   "dependencies": {
+    "ace-editor-builds": "^1.2.4",
     "angular": "^1.5.8",
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.1.0"

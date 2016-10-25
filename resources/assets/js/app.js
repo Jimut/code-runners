@@ -14,3 +14,9 @@ require('./bootstrap');
  */
 
 const app = angular.module('CodeRunners', []);
+
+angular.module('CodeRunners')
+    .controller('DevEnvController', require('./controllers/devenv.controller'))
+    .controller('EditorController', require('./controllers/editor.controller'))
+    .controller('TerminalController', require('./controllers/terminal.controller'))
+    .controller('PanelController', require('./controllers/panel.controller'));

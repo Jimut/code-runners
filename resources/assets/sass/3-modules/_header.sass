@@ -1,0 +1,58 @@
+.main-header
+
+.main-header--de
+  background-color: $de-header-color
+  flex: 0 0 auto
+  display: flex
+  align-items: center
+  flex-flow: row nowrap
+  padding: 4px 16px
+
+  .logo
+    display: block
+    font-size: 14px
+    color: $de-text-color
+
+    &:hover
+      color: $de-text-color
+      text-decoration: none
+
+  .nav-left
+    margin-left: 16px
+
+  .nav-item
+    margin-right: 8px
+    color: $de-text-color
+
+    &:hover, &:focus
+      text-decoration: none
+
+  .nav-right
+    margin-left: auto
+
+  .profile-nav
+    display: flex
+    align-items: center
+    flex-flow: row nowrap
+    cursor: pointer
+
+    img, span
+      margin-right: 4px
+
+    img
+      border-radius: 50%
+
+  .profile-nav-menu
+    right: 0
+    left: initial
+    background-color: $de-foreground-color
+
+    li > a
+      color: $de-text-color
+
+      &:hover
+        background-color: darken($de-foreground-color, 8%)
+
+    .divider
+      margin: 8px 0
+      background-color: $de-divider-color
