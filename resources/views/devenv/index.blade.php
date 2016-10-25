@@ -44,8 +44,8 @@
                 <ul class="nav nav-tabs nav-tabs--de">
                     <li class="active"><a href="#" ng-click="toggle()">Terminal</a></li>
                 </ul>
-                <div class="tab-content tab-content--de">
-                    <div id="terminal" class="editor" ng-show="isOpen()" style="height: 200px"></div>
+                <div class="tab-content tab-content--de" ng-show="isOpen()">
+                    <div id="terminal" class="editor"></div>
                 </div>
             </section>
         </section>

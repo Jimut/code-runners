@@ -5829,8 +5829,12 @@ body {
   display: -webkit-box;
   display: flex;
   flex-flow: row nowrap; }
+  .main-footer--de .footer-block-left span {
+    margin-right: 16px; }
   .main-footer--de .footer-block-right {
     margin-left: auto; }
+    .main-footer--de .footer-block-right span {
+      margin-left: 16px; }
 
 .devenv {
   font-size: 12px;
@@ -5870,7 +5874,7 @@ body {
     border-bottom: none;
     -webkit-box-flex: 0;
     flex: 0 1 auto; }
-    .pane-container--collapsible .editor {
+    .pane-container--collapsible .tab-content {
       height: 200px; }
 
 .nav-tabs--de {
@@ -5963,7 +5967,7 @@ body {
 
 .test-case-input-editor,
 .test-case-output-editor {
-  height: 150px; }
+  height: 120px; }
 
 .editor {
   position: absolute !important;

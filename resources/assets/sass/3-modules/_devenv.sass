@@ -30,7 +30,7 @@
     border-bottom: none
     flex: 0 1 auto
 
-    .editor
+    .tab-content
       height: 200px
 
 .nav-tabs--de
@@ -81,8 +81,9 @@
   padding: 6px 10px
   font-weight: 500
 
-.test-case:not(:last-of-type) .test-case-editor-container
-  border-bottom: 1px solid $de-border-color-light
+.test-case:not(:last-of-type)
+  .test-case-editor-container
+    border-bottom: 1px solid $de-border-color-light
 
 .test-case-header
   background-color: $de-background-color
@@ -125,7 +126,7 @@
 
 .test-case-input-editor,
 .test-case-output-editor
-  height: 150px
+  height: 120px
 
 .editor
   position: absolute !important
