@@ -30,10 +30,17 @@
         <section class="workspace">
             <section class="pane-container"
                      ng-controller="EditorController">
-                <ul class="nav nav-tabs nav-tabs--de">
-                    <li class="active"><a href="#code" data-toggle="tab">Code</a></li>
-                    <li><a href="#question" data-toggle="tab">Question</a></li>
-                </ul>
+                <div class="pane-header">
+                    <ul class="nav nav-tabs nav-tabs--de">
+                        <li class="active"><a href="#code" data-toggle="tab">Code</a></li>
+                        <li><a href="#question" data-toggle="tab">Question</a></li>
+                    </ul>
+                    <div class="de-control">
+                        <button class="btn btn--de btn-primary">
+                            <span class="glyphicon glyphicon-play"></span>
+                        </button>
+                    </div>
+                </div>
                 <div class="tab-content tab-content--de">
                     <div id="code" class="tab-pane active editor"></div>
                     <div id="question" class="tab-pane editor"></div>

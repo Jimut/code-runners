@@ -7,6 +7,9 @@
   color: $de-text-color
   overflow: hidden
 
+  .glyphicon
+    font-size: 10px
+
 .content--de
   border-top: 1px solid $de-border-color
   border-bottom: 1px solid $de-border-color
@@ -33,10 +36,24 @@
     .tab-content
       height: 200px
 
+.pane-header
+  display: flex
+  flex-flow: row nowrap
+  flex: 0 0 auto
+
+.de-control
+  padding: 4px
+  flex: 0 0 auto
+
+  .btn--de
+    font-size: 12px
+    padding: 2px 10px
+    border: none
+
 .nav-tabs--de
   padding: 4px 4px 0 4px
   border: none
-  flex: 0 0 auto
+  flex: 1 0 auto
 
   & > li
     margin: 0
@@ -98,7 +115,6 @@
 
   &__options
     display: none
-    font-size: 10px
     color: $de-text-color-disabled
     margin-left: auto
 
