@@ -45,22 +45,31 @@
                     <li class="active"><a href="#" ng-click="toggle()">Terminal</a></li>
                 </ul>
                 <div class="tab-content tab-content--de">
-                    <div id="terminal" class="editor" ng-show="isOpen()"></div>
+                    <div id="terminal" class="editor" ng-show="isOpen()" style="height: 200px"></div>
                 </div>
             </section>
         </section>
-        <section class="panel-container" ng-controller="PanelController">
+        <section class="panel panel--de" ng-controller="PanelController">
             <div class="panel-header">Test Cases</div>
             <div class="test-case-container">
-                <div class="test-case" ng-repeat="testCase in testCases">
+                <div class="test-case" ng-repeat="testCase in testCases" ng-cloak>
                     <div class="test-case-header">
-                        <div class="test-case-header__name" ng-cloak>Test Case @{{ $index + 1 }}</div>
+                        <div class="test-case-header__name">Test Case @{{ $index + 1 }}</div>
                         <div class="test-case-header__options">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                             <span class="glyphicon glyphicon-remove"></span>
                         </div>
                     </div>
-                    <div class="test-case-text"></div>
+                    <div class="test-case-editor-container">
+                        <div class="test-case-input-box">
+                            <div class="test-case-input-header">Input</div>
+                            <div class="test-case-input-editor"></div>
+                        </div>
+                        <div class="test-case-output-box">
+                            <div class="test-case-output-header">Output</div>
+                            <div class="test-case-output-editor"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

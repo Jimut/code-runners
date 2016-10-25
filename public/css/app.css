@@ -5867,10 +5867,11 @@ body {
   -webkit-box-flex: 1;
   flex: 1 1 auto; }
   .pane-container--collapsible {
-    height: 200px;
     border-bottom: none;
     -webkit-box-flex: 0;
     flex: 0 1 auto; }
+    .pane-container--collapsible .editor {
+      height: 200px; }
 
 .nav-tabs--de {
   padding: 4px 4px 0 4px;
@@ -5880,17 +5881,16 @@ body {
   .nav-tabs--de > li {
     margin: 0; }
     .nav-tabs--de > li > a {
-      color: white;
+      color: white !important;
       padding: 4px 10px;
       border: none;
       border-radius: 0px; }
       .nav-tabs--de > li > a:hover, .nav-tabs--de > li > a:focus {
-        background-color: transparent;
-        border: none; }
+        background-color: #424242;
+        border: none !important; }
     .nav-tabs--de > li.active > a {
-      color: white;
       border: none;
-      background-color: #424242; }
+      background-color: #424242 !important; }
 
 .tab-content--de {
   background-color: #424242;
@@ -5898,25 +5898,39 @@ body {
   flex: 1 1 auto;
   position: relative; }
 
-.panel-container {
+.panel {
   border-left: 1px solid #181a1f;
-  width: 30vw;
-  max-width: 250px;
+  width: 40vw;
+  max-width: 350px;
   -webkit-box-flex: 0;
   flex: 0 0 auto;
   overflow-y: auto; }
+  .panel--de {
+    margin: 0;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent; }
 
 .panel-header {
-  padding: 4px 0;
+  border-bottom: 1px solid #21242a;
+  padding: 6px 10px;
   font-weight: 500; }
 
+.test-case:not(:last-of-type) .test-case-editor-container {
+  border-bottom: 1px solid #21242a; }
+
 .test-case-header {
+  background-color: #303030;
+  border-bottom: 1px solid #21242a;
   display: -webkit-box;
   display: flex;
   flex-flow: row nowrap;
   -webkit-box-align: center;
   align-items: center;
-  padding: 8px 0; }
+  padding: 6px 10px; }
   .test-case-header:hover > .test-case-header__options {
     display: block; }
   .test-case-header__options {
@@ -5929,7 +5943,26 @@ body {
     .test-case-header__options span {
       margin-right: 2px; }
 
-.test-case-text {
+.test-case-editor-container {
+  display: -webkit-box;
+  display: flex;
+  flex-flow: row nowrap; }
+
+.test-case-input-box,
+.test-case-output-box {
+  -webkit-box-flex: 1;
+  flex: 1 1 50%; }
+
+.test-case-output-box {
+  border-left: 1px solid #21242a; }
+
+.test-case-input-header,
+.test-case-output-header {
+  border-bottom: 1px solid #21242a;
+  padding: 2px 10px; }
+
+.test-case-input-editor,
+.test-case-output-editor {
   height: 150px; }
 
 .editor {

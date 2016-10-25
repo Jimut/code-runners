@@ -17,12 +17,22 @@ function controller ($scope, $timeout) {
         term.setTheme("ace/theme/monokai");
         term.getSession().setMode("ace/mode/text");
 
-        var testCases = document.querySelectorAll('.test-case-text');
-        for (var i = 0; i < testCases.length; i++) {
-            var editor = ace.edit(testCases[i]);
-            editor.setTheme('ace/theme/monokai');
-            editor.getSession().setMode('ace/mode/text');
-            testCaseEditors.push(editor);
+        var testCaseInputs = document.querySelectorAll('.test-case-input-editor');
+        var testCaseOutputs = document.querySelectorAll('.test-case-output-editor');
+        for (var i = 0; i < testCaseInputs.length; i++) {
+            var inputEditor = ace.edit(testCaseInputs[i]);
+            inputEditor.setTheme('ace/theme/monokai');
+            inputEditor.getSession().setMode('ace/mode/text');
+
+            var outputEditor = ace.edit(testCaseOutputs[i]);
+            outputEditor.setTheme('ace/theme/monokai');
+            outputEditor.getSession().setMode('ace/mode/text');
+
+            var testCase = {
+                input: inputEditor,
+                output: outputEditor
+            };
+            testCaseEditors.push(testCase);
         }
     }, 0, false);
 

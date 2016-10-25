@@ -27,9 +27,11 @@
   flex: 1 1 auto
 
   &--collapsible
-    height: 200px
     border-bottom: none
     flex: 0 1 auto
+
+    .editor
+      height: 200px
 
 .nav-tabs--de
   padding: 4px 4px 0 4px
@@ -40,41 +42,55 @@
     margin: 0
 
     & > a
-      color: $de-text-color
+      color: $de-text-color !important
       padding: 4px 10px
       border: none
       border-radius: 0px
 
       &:hover, &:focus
-        background-color: transparent
-        border: none
+        background-color: $de-foreground-color
+        border: none !important
 
     &.active > a
-      color: $de-text-color
       border: none
-      background-color: $de-foreground-color
+      background-color: $de-foreground-color !important
 
 .tab-content--de
   background-color: $de-foreground-color
   flex: 1 1 auto
   position: relative
 
-.panel-container
+.panel
   border-left: 1px solid $de-border-color
-  width: 30vw
-  max-width: 250px
+  width: 40vw
+  max-width: 350px
   flex: 0 0 auto
   overflow-y: auto
 
+  &--de
+    margin: 0
+    border-top: none
+    border-bottom: none
+    border-right: none
+    border-radius: 0
+    box-shadow: none
+    background-color: transparent
+
 .panel-header
-  padding: 4px 0
+  border-bottom: 1px solid $de-border-color-light
+  padding: 6px 10px
   font-weight: 500
 
+.test-case:not(:last-of-type) .test-case-editor-container
+  border-bottom: 1px solid $de-border-color-light
+
 .test-case-header
+  background-color: $de-background-color
+  border-bottom: 1px solid $de-border-color-light
   display: flex
   flex-flow: row nowrap
   align-items: center
-  padding: 8px 0
+  padding: 6px 10px
 
   &:hover > &__options
     display: block
@@ -91,7 +107,24 @@
     span
       margin-right: 2px
 
-.test-case-text
+.test-case-editor-container
+  display: flex
+  flex-flow: row nowrap
+
+.test-case-input-box,
+.test-case-output-box
+  flex: 1 1 50%
+
+.test-case-output-box
+  border-left: 1px solid $de-border-color-light
+
+.test-case-input-header,
+.test-case-output-header
+  border-bottom: 1px solid $de-border-color-light
+  padding: 2px 10px
+
+.test-case-input-editor,
+.test-case-output-editor
   height: 150px
 
 .editor
