@@ -67,7 +67,8 @@ function controller ($scope, $timeout, $http) {
             code: writtenCode,
             testCases: testCases
         }).then(function (resp) {
-            term.setValue(resp.data.termOut);
+            console.log(resp.data);
+            term.setValue(resp.data.terminalOut);
         }, function () {
             console.log('Compile Failed');
         });

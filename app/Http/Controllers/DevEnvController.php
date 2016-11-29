@@ -16,6 +16,9 @@ class DevEnvController extends Controller
 
     public function compile(Request $request)
     {
+        $terminalOut = '';
+        $testCaseOut = '';
+
         $name = uniqid();
         $codefile = $name . '.c';
         $exefile = $name . '.exe';
@@ -27,43 +30,53 @@ class DevEnvController extends Controller
                 .' -o '.escapeshellarg(storage_path('app/codes/progs/'.$exefile)).' 2>&1');
 
         if ($outputGcc !== NULL) {
-            $termOut = $outputGcc;
+            $terminalOut = $outputGcc;
         } else {
-            $descriptorspec = [
-                ['pipe', 'r'],
-                ['pipe', 'w'],
-                ['file', 'logs/'.$errorfile, 'a']
-            ];
+            if (count($request->testCases) == 0) {
+                $outputExe = shell_exec(storage_path('app/codes/progs/'.$exefile).' 2>&1');
+                $terminalOut = $outputExe;
+            } else {
+                $descriptorspec = [
+                    ['pipe', 'r'],
+                    ['pipe', 'w'],
+                    ['file', storage_path('app/codes/logs/'.$logfile), 'a']
+                ];
 
-            foreach ($requst->testCases as $testCase) {
-                $stdin = $testCase['input'];
+                foreach ($request->testCases as $testCase) {
+                    $stdin = $testCase['input'];
+                    $process = proc_open($exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
 
-                $process = proc_open($exefile, $descriptorspec, $pipes, storage_path('app/progs'));
+                    if (is_resource($process)) {
+                        fwrite ($pipes[0], $stdin);
+                        fclose ($pipes[0]);
 
-                if (is_resource($process)) {
-                    fwrite ($pipes[0], $stdin);
-                    fclose ($pipes[0]);
+                        $output = stream_get_contents($pipes[1]);
+                        fclose ($pipes[1]);
 
-                    $output = stream_get_contents($pipes[1]);
-                    fclose ($pipes[1]);
+                        $terminalOut = $output;
 
-                    $returnValue = proc_close($process);
+                        $returnValue = proc_close($process);
+                        // if (!$returnValue) {
+                        //     $terminalOut .= file_get_contents('logs/'.$logfile);
+                        //     $terminalOut .= "\n";
+                        // }
 
-                    if (!$returnValue) {
-                        $termOut = file_get_contents('logs/'.$errorfile);
+                        if ($testCase['output'] === $output) {
+                            $testCaseOut[] = true;
+                        } else {
+                            $testCaseOut[] = false;
+                        }
                     }
                 }
+                Storage::delete('codes/logs/'.$logfile);
             }
-
-            Storage::delete('progs/'.$exefile);
-            Storage::delete('logs/'.$errorfile);
+            Storage::delete('codes/progs/'.$exefile);
         }
-
-        Storage::delete($codefile);
+        Storage::delete('codes/'.$codefile);
 
         return response()->json([
-            'termOut' => $termOut,
-            'testCaseOut' => ''
+            'terminalOut' => $terminalOut,
+            'testCaseOut' => $testCaseOut
         ]);
     }
 }
