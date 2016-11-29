@@ -5941,9 +5941,6 @@ body {
   padding: 6px 10px;
   font-weight: 500; }
 
-.test-case:not(:last-of-type) .test-case-editor-container {
-  border-bottom: 1px solid #21242a; }
-
 .test-case-header {
   background-color: #303030;
   border-bottom: 1px solid #21242a;
@@ -5965,6 +5962,7 @@ body {
       margin-right: 2px; }
 
 .test-case-editor-container {
+  border-bottom: 1px solid #21242a;
   display: -webkit-box;
   display: flex;
   flex-flow: row nowrap; }
