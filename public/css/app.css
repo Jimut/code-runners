@@ -5956,10 +5956,10 @@ body {
     display: none;
     color: rgba(255, 255, 255, 0.5);
     margin-left: auto; }
-    .test-case-header__options:hover {
-      color: rgba(255, 255, 255, 0.7); }
     .test-case-header__options span {
       margin-right: 2px; }
+      .test-case-header__options span:hover {
+        color: rgba(255, 255, 255, 0.7); }
 
 .test-case-editor-container {
   border-bottom: 1px solid #21242a;
