@@ -17,6 +17,7 @@ function controller ($scope, $timeout, $http) {
         term = ace.edit('terminal');
         term.setTheme("ace/theme/monokai");
         term.getSession().setMode("ace/mode/text");
+        term.setReadOnly(true);
 
         var testCaseInputs = document.querySelectorAll('.test-case-input-editor');
         var testCaseOutputs = document.querySelectorAll('.test-case-output-editor');
@@ -68,7 +69,7 @@ function controller ($scope, $timeout, $http) {
             testCases: testCases
         }).then(function (resp) {
             console.log(resp.data);
-            term.setValue(resp.data.terminalOut);
+            term.setValue(resp.data.terminalOut, 1);
         }, function () {
             console.log('Compile Failed');
         });
