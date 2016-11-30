@@ -62,6 +62,10 @@
             <div class="test-case-container">
                 <div class="test-case" ng-repeat="testCase in testCases" ng-cloak>
                     <div class="test-case-header">
+                        <div class="test-case-header__status" ng-if="testCase.hasOwnProperty('status')">
+                            <span class="glyphicon glyphicon-ok-sign success" ng-if="testCase.status"></span>
+                            <span class="glyphicon glyphicon-remove-sign failure" ng-if="!testCase.status"></span>
+                        </div>
                         <div class="test-case-header__name">Test Case @{{ $index + 1 }}</div>
                         <div class="test-case-header__options">
                             <span class="glyphicon glyphicon-chevron-down"></span>

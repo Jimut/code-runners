@@ -5950,6 +5950,14 @@ body {
   -webkit-box-align: center;
   align-items: center;
   padding: 6px 10px; }
+  .test-case-header__status > span {
+    top: 2px;
+    font-size: 12px !important;
+    margin-right: 10px; }
+  .test-case-header__status > span.success {
+    color: #00E676; }
+  .test-case-header__status > span.failure {
+    color: #FF1744; }
   .test-case-header:hover > .test-case-header__options {
     display: block; }
   .test-case-header__options {
