@@ -10,9 +10,9 @@ function controller ($scope, $timeout, $http) {
         code.setTheme("ace/theme/monokai");
         code.getSession().setMode("ace/mode/c_cpp");
 
-        qs = ace.edit('question');
-        qs.setTheme("ace/theme/monokai");
-        qs.getSession().setMode("ace/mode/text");
+        // qs = ace.edit('question');
+        // qs.setTheme("ace/theme/monokai");
+        // qs.getSession().setMode("ace/mode/text");
 
         term = ace.edit('terminal');
         term.setTheme("ace/theme/monokai");
@@ -42,7 +42,7 @@ function controller ($scope, $timeout, $http) {
     $scope.$on('resized', function (event) {
         $timeout(function () {
             code.resize();
-            qs.resize();
+            // qs.resize();
             term.resize();
         }, 0, false);
     });

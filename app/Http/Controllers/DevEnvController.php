@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Storage;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 class DevEnvController extends Controller
 {
     public function show()
@@ -21,7 +19,7 @@ class DevEnvController extends Controller
 
         $name = uniqid();
         $codefile = $name . '.c';
-        $exefile = $name . '.exe';
+        $exefile = $name . '.out';
         $logfile = $name . '.txt';
 
         Storage::put('codes/'.$codefile, $request->code);
@@ -33,7 +31,7 @@ class DevEnvController extends Controller
             $terminalOut = $outputGcc;
         } else {
             if (count($request->testCases) == 0) {
-                $outputExe = shell_exec(storage_path('app/codes/progs/'.$exefile).' 2>&1');
+                $outputExe = shell_exec('('.storage_path('app/codes/progs/'.$exefile).' 2>&1)');
                 $terminalOut = $outputExe;
             } else {
                 $descriptorspec = [
@@ -44,7 +42,7 @@ class DevEnvController extends Controller
 
                 foreach ($request->testCases as $testCase) {
                     $stdin = $testCase['input'];
-                    $process = proc_open($exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
+                    $process = proc_open('./'.$exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
 
                     if (is_resource($process)) {
                         fwrite ($pipes[0], $stdin);

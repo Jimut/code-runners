@@ -12,7 +12,7 @@
         <nav class="nav-right">
             <div class="dropdown">
                 <div class="profile-nav dropdown-toggle" data-toggle="dropdown">
-                    <img src="images/face.jpg" height="16px" width="16px">
+                    <img src="/images/face.jpg" height="16px" width="16px">
                     <span>John Doe</span>
                     <span class="caret"></span>
                 </div>
@@ -44,7 +44,10 @@
                 </div>
                 <div class="tab-content tab-content--de">
                     <div id="code" class="tab-pane active editor"></div>
-                    <div id="question" class="tab-pane editor"></div>
+                    <div id="question" class="tab-pane question">
+                        <h1>{{ $problem->title }}</h1>
+                        <p>{{ $problem->body }}</p>
+                    </div>
                 </div>
             </section>
             <section class="pane-container pane-container--collapsible"
@@ -101,8 +104,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/ace/ace.js" type="text/javascript"></script>
-    <script src="js/app.js"></script>
+    <script src="/js/ace/ace.js" type="text/javascript"></script>
+    <script src="/js/app.js"></script>
 
 </body>
 @endsection
