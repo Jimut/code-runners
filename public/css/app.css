@@ -7782,6 +7782,11 @@ body {
   margin-left: 16px;
 }
 
+.main-footer--de .footer-block-right select {
+  color: rgba(0, 0, 0, 0.87);
+  margin-left: 16px;
+}
+
 .devenv {
   font-size: 12px;
   height: 100vh;

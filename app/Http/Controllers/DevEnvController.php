@@ -18,20 +18,32 @@ class DevEnvController extends Controller
         $testCaseOut = '';
 
         $name = uniqid();
-        $codefile = $name . '.c';
+
+        if ($request->lang === 'C') {
+            $codefile = $name . '.c';
+        } else if ($request->lang === 'C++') {
+            $codefile = $name . '.cpp';
+        }
+
         $exefile = $name . '.out';
         $logfile = $name . '.txt';
 
         Storage::put('codes/'.$codefile, $request->code);
 
-        $outputGcc = shell_exec('gcc '.escapeshellarg(storage_path('app/codes/'.$codefile))
-                .' -o '.escapeshellarg(storage_path('app/codes/progs/'.$exefile)).' 2>&1');
+        if ($request->lang === 'C') {
+            $outputGcc = shell_exec('gcc '.escapeshellarg(storage_path('app/codes/'.$codefile))
+                    .' -o '.escapeshellarg(storage_path('app/codes/progs/'.$exefile)).' 2>&1');
+        } else if ($request->lang === 'C++') {
+            $outputGcc = shell_exec('g++ '.escapeshellarg(storage_path('app/codes/'.$codefile))
+                    .' -o '.escapeshellarg(storage_path('app/codes/progs/'.$exefile)).' 2>&1');
+        }
 
         if ($outputGcc !== NULL) {
             $terminalOut = $outputGcc;
         } else {
             if (count($request->testCases) == 0) {
                 $outputExe = shell_exec('('.storage_path('app/codes/progs/'.$exefile).' 2>&1)');
+
                 $terminalOut = $outputExe;
             } else {
                 $descriptorspec = [
@@ -42,7 +54,12 @@ class DevEnvController extends Controller
 
                 foreach ($request->testCases as $testCase) {
                     $stdin = $testCase['input'];
-                    $process = proc_open('./'.$exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
+
+                    if ($request->lang === 'C' || $request->lang === 'C++') {
+                        $process = proc_open('./'.$exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
+                    } else if ($request->lang === 'Java') {
+                        $process = proc_open('java '.$exefile, $descriptorspec, $pipes, storage_path('app/codes/progs'));
+                    }
 
                     if (is_resource($process)) {
                         fwrite ($pipes[0], $stdin);

@@ -64,9 +64,13 @@ function controller ($scope, $timeout, $http) {
             });
         }
 
+        let lang = document.getElementById('lang');
+        lang = lang.options[lang.selectedIndex].value;
+
         $http.post('/compile', {
             code: writtenCode,
-            testCases: testCases
+            testCases: testCases,
+            lang: lang
         }).then(function (resp) {
             console.log(resp.data);
             term.setValue(resp.data.terminalOut, 1);

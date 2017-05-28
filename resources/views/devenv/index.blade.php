@@ -99,7 +99,10 @@
             <span>Monokai</span>
             <span>14 px</span>
             <span>2 Spaces</span>
-            <span>GCC</span>
+            <select id="lang">
+              <option>C</option>
+              <option>C++</option>
+            </select>
         </div>
     </footer>
 
