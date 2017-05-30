@@ -26,22 +26,22 @@ class DevEnvController extends Controller
 
         $req = $request->all();
 
-        $req['testCases'][] = [
+        $response = $this->run((object)$req);
+
+        $req['testCases'][0] = [
             'input' => $problem->input,
             'output' => $problem->output,
         ];
 
-        $response = $this->run((object)$req);
+        $internalResponse = $this->run((object)$req);
 
         $response['solved'] = false;
-        if (end($response['testCaseOut'])) {
+        if (@$internalResponse['testCaseOut'][0]) {
             $response['solved'] = true;
 
             $request->user()->xp += $problem->xp;
             $request->user()->save();
         }
-
-        array_pop($response['testCaseOut']);
 
         return response()->json($response);
     }

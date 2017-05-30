@@ -19,7 +19,7 @@ class AddXpAndTestCase extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('xp');
+            $table->integer('xp')->default(0);
         });
     }
 

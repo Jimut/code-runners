@@ -102,6 +102,7 @@
             <select id="lang">
               <option>C</option>
               <option>C++</option>
+              <option>Java</option>
             </select>
         </div>
     </footer>
