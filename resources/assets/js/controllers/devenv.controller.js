@@ -67,14 +67,18 @@ function controller ($scope, $timeout, $http) {
         let lang = document.getElementById('lang');
         lang = lang.options[lang.selectedIndex].value;
 
-        $http.post('/compile', {
+        $http.post('test', {
             code: writtenCode,
             testCases: testCases,
-            lang: lang
+            lang: lang,
         }).then(function (resp) {
             console.log(resp.data);
             term.setValue(resp.data.terminalOut, 1);
             $scope.setTestCases(resp.data);
+
+            if (resp.data.solved) {
+                window.location.href = '/home';
+            }
         }, function () {
             console.log('Compile Failed');
         });

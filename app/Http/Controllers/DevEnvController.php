@@ -3,16 +3,55 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use App\Problem;
 use Illuminate\Http\Request;
 
 class DevEnvController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'show'
+        ]]);
+    }
+
     public function show()
     {
         return view('devenv.index');
     }
 
+    public function test(Request $request, $id)
+    {
+        $problem = Problem::find($id);
+
+        $req = $request->all();
+
+        $req['testCases'][] = [
+            'input' => $problem->input,
+            'output' => $problem->output,
+        ];
+
+        $response = $this->run((object)$req);
+
+        $response['solved'] = false;
+        if (end($response['testCaseOut'])) {
+            $response['solved'] = true;
+
+            $request->user()->xp += $problem->xp;
+            $request->user()->save();
+        }
+
+        array_pop($response['testCaseOut']);
+
+        return response()->json($response);
+    }
+
     public function compile(Request $request)
+    {
+        return response()->json($this->run($request));
+    }
+
+    private function run($request)
     {
         $terminalOut = '';
         $testCaseOut = '';
@@ -89,9 +128,9 @@ class DevEnvController extends Controller
         }
         Storage::delete('codes/'.$codefile);
 
-        return response()->json([
+        return [
             'terminalOut' => $terminalOut,
             'testCaseOut' => $testCaseOut
-        ]);
+        ];
     }
 }

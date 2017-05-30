@@ -17,7 +17,7 @@
                     <span class="caret"></span>
                 </div>
                 <ul class="profile-nav-menu dropdown-menu">
-                    <li><a href="#">Your profile</a></li>
+                    <li><a href="{{ url('home') }}">Your profile</a></li>
                     <li><a href="#">Your questions</a></li>
                     <li class="divider"></li>
                     <li><a href="#">Sign out</a></li>

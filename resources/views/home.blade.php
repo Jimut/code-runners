@@ -3,14 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+        <div class="col-md-6 col-md-offset-3">
+            <h1>{{ Auth::user()->name }}</h1>
+            <h2>XP: {{ Auth::user()->xp }}</h2>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
+            <a href="{{ route('problem.index') }}" class="btn btn-primary">Solve Problems</a>
         </div>
     </div>
 </div>
