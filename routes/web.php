@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('problem.index');
+    return view('welcome');
 });
 
 Auth::routes();

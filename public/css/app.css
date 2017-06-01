@@ -8018,4 +8018,12 @@ body {
   right: 0;
 }
 
+.bg-code {
+  background-image: url("/images/bg.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  padding-top: 100px;
+}
+
 /*# sourceMappingURL=app.css.map */
